@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <fstream>
 #include <vector>
 using namespace std;
@@ -9,7 +9,7 @@ const string fWomanPriority = "\\priorities\\womanPriority.txt";
 
 void fillPriorityFile(const string adress) {
 	fstream file(adress, ios_base::in | ios_base::out | ios_base::trunc);
-	if (!file) throw logic_error("Ошибка с файлом");
+	if (!file) throw logic_error("РћС€РёР±РєР° СЃ С„Р°Р№Р»РѕРј");
 	file << 1 << 2 << 3 << 4;
 	file.close();
 }
