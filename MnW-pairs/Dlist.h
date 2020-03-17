@@ -30,25 +30,25 @@ private:
 
 	int m_listSize{};
 
-	/* Êëàññ âûâîäà äàííûõ â êîíñîëü */
+	/* ÐšÐ»Ð°ÑÑ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð² ÐºÐ¾Ð½ÑÐ¾Ð»ÑŒ */
 	class OutClass {
 	private:
-		Dlist* m_object{};			// Ïðèâÿçêà ê îáúåêòó ñïèñêà
-		Mode m_mode{ Mode::LIST };	// Ðåæèì âûâîäà
+		Dlist* m_object{};			// ÐŸÑ€Ð¸Ð²ÑÐ·ÐºÐ° Ðº Ð¾Ð±ÑŠÐµÐºÑ‚Ñƒ ÑÐ¿Ð¸ÑÐºÐ°
+		Mode m_mode{ Mode::LIST };	// Ð ÐµÐ¶Ð¸Ð¼ Ð²Ñ‹Ð²Ð¾Ð´Ð°
 
 	public:
 		OutClass(Dlist* object) {
 			m_object = object;
 		}
 
-		const int defaultLength = 15;		// Êîëè÷åñòâî äàííûõ, âûâîäèìûõ â ñòðîêó ïî óìîë÷àíèþ
-		int lineLength{ defaultLength };	// Êîëè÷åñòâî äàííûõ, âûâîäèìûõ â ñòðîêó
+		const int defaultLength = 15;		// ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…, Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼Ñ‹Ñ… Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ
+		int lineLength{ defaultLength };	// ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…, Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼Ñ‹Ñ… Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ
 
-		/* Ìåòîäû èçìåíåíèÿ ðåæèìà âûâîäà */
+		/* ÐœÐµÑ‚Ð¾Ð´Ñ‹ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ñ€ÐµÐ¶Ð¸Ð¼Ð° Ð²Ñ‹Ð²Ð¾Ð´Ð° */
 		void mode(Mode newMode) { m_mode = newMode; }
 		Mode mode(void) { return m_mode; }
 
-		/* Ìåòîä âûâîäà äàííûõ äèàïàçîíà (0, size - 1) */
+		/* ÐœÐµÑ‚Ð¾Ð´ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð° (0, size - 1) */
 		bool operator() (void) const {
 			if (m_mode != Mode::NO_OUT && !m_object->isEmpty()) {
 				Node* currentMember = m_object->m_front;
@@ -62,11 +62,11 @@ private:
 					std::cout << currentMember->data << "\t";
 					if (m_mode == Mode::LIST_ADRESS || m_mode == Mode::LIST_ADR_FULL ||
 						m_mode == Mode::LIST_NUM_ADR || m_mode == Mode::LIST_NUM_ADR_FULL) {
-						std::cout << "Çâåíî: [" << currentMember << "]\t";
+						std::cout << "Ð—Ð²ÐµÐ½Ð¾: [" << currentMember << "]\t";
 					}
 					if (m_mode == Mode::LIST_ADR_FULL || m_mode == Mode::LIST_NUM_ADR_FULL) {
-						std::cout << "Ïðåäûäóùåå: [" << currentMember->prev << "]\t" <<
-							"Ñëåäóþùåå: [" << currentMember->next << "]";
+						std::cout << "ÐŸÑ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰ÐµÐµ: [" << currentMember->prev << "]\t" <<
+							"Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰ÐµÐµ: [" << currentMember->next << "]";
 					}
 
 					if ((i + 1) % lineLength == 0 && m_mode == Mode::LIST || m_mode != Mode::LIST) std::cout << std::endl;
@@ -78,7 +78,7 @@ private:
 			else return false;
 		}
 
-		/* Ìåòîä âûâîäà äàííûõ óêàçàííîãî äèàïàçîíà */
+		/* ÐœÐµÑ‚Ð¾Ð´ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð° */
 		bool operator() (int start, int end = m_object->m_listSize) {
 			if (m_mode != Mode::NO_OUT && !m_object->isEmpty() && end < m_object->m_listSize) {
 				Node* currentMember = m_object->listSearch(start);
@@ -92,11 +92,11 @@ private:
 					std::cout << currentMember->data << "\t";
 					if (m_mode == Mode::LIST_ADRESS || m_mode == Mode::LIST_ADR_FULL ||
 						m_mode == Mode::LIST_NUM_ADR || m_mode == Mode::LIST_NUM_ADR_FULL) {
-						std::cout << "Çâåíî: [" << currentMember << "]\t";
+						std::cout << "Ð—Ð²ÐµÐ½Ð¾: [" << currentMember << "]\t";
 					}
 					if (m_mode == Mode::LIST_ADR_FULL || m_mode == Mode::LIST_NUM_ADR_FULL) {
-						std::cout << "Ïðåäûäóùåå: [" << currentMember->prev << "]\t" <<
-							"Ñëåäóþùåå: [" << currentMember->next << "]";
+						std::cout << "ÐŸÑ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰ÐµÐµ: [" << currentMember->prev << "]\t" <<
+							"Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰ÐµÐµ: [" << currentMember->next << "]";
 					}
 
 					if ((i + 1) % lineLength == 0 && m_mode == Mode::LIST || m_mode != Mode::LIST) std::cout << std::endl;
@@ -157,10 +157,10 @@ public:
 		clear();
 	}
 
-	/* Ïîòîê âûâîäà äàííûõ */
+	/* ÐŸÐ¾Ñ‚Ð¾Ðº Ð²Ñ‹Ð²Ð¾Ð´Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… */
 	OutClass out{ this };
 
-	/* Óäàëÿåò âñå ÷ëåíû ñïèñêà */
+	/* Ð£Ð´Ð°Ð»ÑÐµÑ‚ Ð²ÑÐµ Ñ‡Ð»ÐµÐ½Ñ‹ ÑÐ¿Ð¸ÑÐºÐ° */
 	void clear() {
 		if (!isEmpty()) {
 			Node* member = m_front;
@@ -176,27 +176,27 @@ public:
 		}
 	}
 
-	/* Âåðíóòü çíà÷åíèå ñïèñêà â ïîçèöèè pos (ññûëêó) */
+	/* Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð² Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ pos (ÑÑÑ‹Ð»ÐºÑƒ) */
 	T& at(int pos) {
 		Node* member = listSearch(pos);
 		return member->data;
 	}
-	/* Âåðíóòü çíà÷åíèå ñïèñêà â ïîçèöèè pos (ññûëêó) */
+	/* Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð² Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ pos (ÑÑÑ‹Ð»ÐºÑƒ) */
 	T& operator[] (int pos) {
 		return at(pos);
 	}
 
-	/* Óñòàíîâèòü öåëî÷èñëåííîå çíà÷åíèå ñïèñêà â ïîçèöèè pos */
+	/* Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ñ†ÐµÐ»Ð¾Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ° Ð² Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ pos */
 	Dlist& set(int pos, T data) {
 		Node* member = listSearch(pos);
 		member->data = data;
 		return (*this);
 	}
 
-	/* Âñòàâèòü íîâûé ÷ëåí ñïèñêà ïîñëå ïîçèöèè pos */
+	/* Ð’ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‡Ð»ÐµÐ½ ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾ÑÐ»Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ pos */
 	Dlist& push(int pos, T data = 0) {
-		Node tmpNode{ T{}, m_front };								// Çâåíî, ïðåäøåñòâóþùåå ïåðâîìó çâåíó 
-		Node* member = (pos == -1) ? &tmpNode : listSearch(pos);	// Çâåíî, ïðåäøåñòâóþùåå íîâîìó çâåíó	
+		Node tmpNode{ T{}, m_front };								// Ð—Ð²ÐµÐ½Ð¾, Ð¿Ñ€ÐµÐ´ÑˆÐµÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐµ Ð¿ÐµÑ€Ð²Ð¾Ð¼Ñƒ Ð·Ð²ÐµÐ½Ñƒ 
+		Node* member = (pos == -1) ? &tmpNode : listSearch(pos);	// Ð—Ð²ÐµÐ½Ð¾, Ð¿Ñ€ÐµÐ´ÑˆÐµÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐµ Ð½Ð¾Ð²Ð¾Ð¼Ñƒ Ð·Ð²ÐµÐ½Ñƒ	
 		Node* nextMember = member->next;
 
 		member->next = new Node;
@@ -211,14 +211,14 @@ public:
 		return (*this);
 	}
 
-	/* Óäàëèòü ÷ëåí ñïèñêà èç çàäàííîé ïîçèöèè pos */
+	/* Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ñ‡Ð»ÐµÐ½ ÑÐ¿Ð¸ÑÐºÐ° Ð¸Ð· Ð·Ð°Ð´Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ pos */
 	T remove(int pos) {
 		if (isEmpty()) {
 			throw std::logic_error("ERR: list is empty!");
 			return 0;
 		}
 		Node* prevMember = listSearch(pos - 1);
-		if (prevMember != nullptr) {				// Åñëè íóæíîå çâåíî íàõîäèòñÿ íå â íà÷àëå
+		if (prevMember != nullptr) {				// Ð•ÑÐ»Ð¸ Ð½ÑƒÐ¶Ð½Ð¾Ðµ Ð·Ð²ÐµÐ½Ð¾ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð½Ðµ Ð² Ð½Ð°Ñ‡Ð°Ð»Ðµ
 			Node* member = prevMember->next;
 			T data = member->data;
 
@@ -244,31 +244,31 @@ public:
 		}
 	}
 
-	/* Âîçâðàùàåò ðàçìåð ñïèñêà */
+	/* Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÑÐ¿Ð¸ÑÐºÐ° */
 	unsigned int size() const { return m_listSize; }
 
-	/* Âîçâðàùàåò, ïóñòîé ëè ñïèñîê èëè íåò */
+	/* Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚, Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ð»Ð¸ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¸Ð»Ð¸ Ð½ÐµÑ‚ */
 	bool isEmpty() const { return m_listSize == 0; }
 
-	/* Äîáàâëÿåò íîâîå çâåíî â íà÷àëî ñïèñêà */
+	/* Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÑ‚ Ð½Ð¾Ð²Ð¾Ðµ Ð·Ð²ÐµÐ½Ð¾ Ð² Ð½Ð°Ñ‡Ð°Ð»Ð¾ ÑÐ¿Ð¸ÑÐºÐ° */
 	Dlist& push_front(T data = 0) { return push(-1, data); }
 
-	/* Äîáàâëÿåò íîâîå çâåíî â êîíåö ñïèñêà */
+	/* Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÑ‚ Ð½Ð¾Ð²Ð¾Ðµ Ð·Ð²ÐµÐ½Ð¾ Ð² ÐºÐ¾Ð½ÐµÑ† ÑÐ¿Ð¸ÑÐºÐ° */
 	Dlist& push_back(T data = 0) { return push(m_listSize - 1, data); }
 
-	/* Âîçâðàùàåò çíà÷åíèå â ïîñëåäíåì çâåíå ñïèñêà (ññûëêó) */
+	/* Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ¼ Ð·Ð²ÐµÐ½Ðµ ÑÐ¿Ð¸ÑÐºÐ° (ÑÑÑ‹Ð»ÐºÑƒ) */
 	T& back() { return at(m_listSize - 1); }
 
-	/* Âîçâðàùàåò çíà÷åíèå â ïåðâîì çâåíå ñïèñêà (ññûëêó) */
+	/* Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð¿ÐµÑ€Ð²Ð¾Ð¼ Ð·Ð²ÐµÐ½Ðµ ÑÐ¿Ð¸ÑÐºÐ° (ÑÑÑ‹Ð»ÐºÑƒ) */
 	T& front() { return at(0); }
 
-	/* Óäàëÿåò ïîñëåäíåå çâåíî ñïèñêà */
+	/* Ð£Ð´Ð°Ð»ÑÐµÑ‚ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐµ Ð·Ð²ÐµÐ½Ð¾ ÑÐ¿Ð¸ÑÐºÐ° */
 	T pop_back() { return remove(m_listSize - 1); }
 
-	/* Óäàëÿåò ïåðâîå çâåíî ñïèñêà */
+	/* Ð£Ð´Ð°Ð»ÑÐµÑ‚ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ð·Ð²ÐµÐ½Ð¾ ÑÐ¿Ð¸ÑÐºÐ° */
 	T pop_front() { return remove(0); }
 
-	/* Ìåíÿåò äâà çâåíà ñïèñêà ìåñòàìè (áåç êîïèðîâàíèÿ) */
+	/* ÐœÐµÐ½ÑÐµÑ‚ Ð´Ð²Ð° Ð·Ð²ÐµÐ½Ð° ÑÐ¿Ð¸ÑÐºÐ° Ð¼ÐµÑÑ‚Ð°Ð¼Ð¸ (Ð±ÐµÐ· ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ) */
 	bool swap(int pos1, int pos2) {
 		if (pos1 == pos2)			return true;
 		if (pos1 > pos2)			swap(pos1, pos2);
